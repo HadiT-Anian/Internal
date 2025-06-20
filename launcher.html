@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Launching Meeting</title>
+  <script>
+    window.onload = function () {
+      const w = 800, h = 600;
+      const left = (screen.width - w) / 2;
+      const top = (screen.height - h) / 2;
+      window.open("https://hadit-anian.github.io/Internal/", "popup",
+        `width=${w},height=${h},top=${top},left=${left}`);
+      window.close(); // Close launcher tab
+    };
+  </script>
+</head>
+<body>
+  <p>Launching meeting…</p>
+</body>
+</html>
