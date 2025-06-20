@@ -1,21 +1,36 @@
-
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <script src='https://8x8.vc/vpaas-magic-cookie-8c306818f20a41968ffbe5ed6f5ddb01/external_api.js' async></script>
-        <style>html, body, #jaas-container { height: 100%; }</style>
-        <script type="text/javascript">
-          window.onload = () => {
-            const api = new JitsiMeetExternalAPI("8x8.vc", {
-              roomName: "vpaas-magic-cookie-8c306818f20a41968ffbe5ed6f5ddb01/SampleAppNotableSpousesInterviewPreviously",
-              parentNode: document.querySelector('#jaas-container'),
-							// Make sure to include a JWT if you intend to record,
-							// make outbound calls or use any other premium features!
-							// jwt: "eyJraWQiOiJ2cGFhcy1tYWdpYy1jb29raWUtOGMzMDY4MThmMjBhNDE5NjhmZmJlNWVkNmY1ZGRiMDEvMjRhZTAyLVNBTVBMRV9BUFAiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJqaXRzaSIsImlzcyI6ImNoYXQiLCJpYXQiOjE3NTAzMjE2MzUsImV4cCI6MTc1MDMyODgzNSwibmJmIjoxNzUwMzIxNjMwLCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtOGMzMDY4MThmMjBhNDE5NjhmZmJlNWVkNmY1ZGRiMDEiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOmZhbHNlLCJvdXRib3VuZC1jYWxsIjpmYWxzZSwic2lwLW91dGJvdW5kLWNhbGwiOmZhbHNlLCJ0cmFuc2NyaXB0aW9uIjpmYWxzZSwicmVjb3JkaW5nIjpmYWxzZSwiZmxpcCI6ZmFsc2V9LCJ1c2VyIjp7ImhpZGRlbi1mcm9tLXJlY29yZGVyIjpmYWxzZSwibW9kZXJhdG9yIjp0cnVlLCJuYW1lIjoiVGVzdCBVc2VyIiwiaWQiOiJnb29nbGUtb2F1dGgyfDEwNjMzMzMxNTM4NzYzNDUwMjYxOCIsImF2YXRhciI6IiIsImVtYWlsIjoidGVzdC51c2VyQGNvbXBhbnkuY29tIn19LCJyb29tIjoiKiJ9.QBxrG_bHQ5r88H7HUxE9OlmJMk_BtNKjdfxh9ENDqzWlpXC8kL6HvxdjbLTznoV-2s7EhkPNdTZW5ttR_XUEI8NmWNsgGMtXLjsWxkxzrDUQ60ye7qS0xfWam14ZIj3bMyVoyk_zV4alj9eP_FEPkLpDuvrdUgAPS_ttIV_ScjyXtKl2n8Nvda2nxF17ElTw2osvF3h7VhQlQTa8kA6iNlBNZSsRQnKrWkLFMcBHRtKSOXiX37reWMAdeIlocdxgiE6798X55j6Tl5Pdv8klgHGzw7_taqPgTqlY6Im3GvMyE2MpfqmVln7KVS9NEAZ922HwtzIjPqW_nesvjcGciQ"
-            });
-          }
-        </script>
-      </head>
-      <body><div id="jaas-container" /></body>
-    </html>
-  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jitsi Meeting</title>
+  <script src="https://8x8.vc/vpaas-magic-cookie-8c306818f20a41968ffbe5ed6f5ddb01/external_api.js" async></script>
+  <style>
+    html, body, #jaas-container {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+  <script>
+    window.onload = () => {
+      // First request camera and mic permission explicitly
+      navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        .then(() => {
+          // Permissions granted, initialize Jitsi API
+          const api = new JitsiMeetExternalAPI("8x8.vc", {
+            roomName: "vpaas-magic-cookie-8c306818f20a41968ffbe5ed6f5ddb01/SampleAppNotableSpousesInterviewPreviously",
+            parentNode: document.querySelector('#jaas-container'),
+            // You can add more config options here if needed
+          });
+        })
+        .catch(error => {
+          alert('Camera/microphone permission denied or error: ' + error.message);
+        });
+    };
+  </script>
+</head>
+<body>
+  <div id="jaas-container"></div>
+</body>
+</html>
